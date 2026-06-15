@@ -15,7 +15,11 @@ pipeline {
 		stage('Build') {
 			steps {
 				dir('maven11') {
+<<<<<<< HEAD
 					sh 'mvn clean package'
+=======
+					sh 'mvn clean package';
+>>>>>>> 44271bd (gradle11 commit)
 				}
 			}
 		}

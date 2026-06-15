@@ -1,0 +1,42 @@
+pipeline {
+	agent any
+	
+	tools {
+		gradle 'Gradle'
+	}
+	
+	stages {
+		stage('Check-out') {
+			steps {
+				git branch:'main', url:'https://github.com/narasimhaa44/devopsfinal.git'
+				}
+		}
+		
+		stage('Build') {
+			steps {
+				dir('gradle11') {
+					sh 'gradle build'
+				}
+			}
+		}
+		
+		stage('Run Application') {
+			steps {
+				dir('gradle11') {
+					sh 'gradle run'
+				}
+			}
+		}
+		
+	}
+	
+	post {
+		success {
+			echo 'Gradle pipeline executed Sucessfully!'
+		}
+		failure {
+			echo 'Gradle pipeline failed!'
+		}
+	}
+}
+			
