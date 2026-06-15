@@ -1,0 +1,51 @@
+pipeline {
+	agent any
+	
+	tools {
+		maven 'Maven'
+	}
+	
+	stages {
+		stage('Check-Out') {
+			steps {
+				git branch: 'main' , user: 'https://github.com/narasimhaa44/devopsfinal.git'
+				}
+		}
+		
+		stage('Build') {
+			steps {
+				dir('mavensel') {
+					sh 'mvn clean package'
+				}
+			}
+		}
+		
+		stage('Test') {
+				steps {
+					dir('mavensel') {
+					sh 'mvn cleans test'
+				}
+			}
+		}
+		
+		stage('Run-applciation') {
+			steps {
+				dir('mabensel') {
+				sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
+			}
+		    }		
+		}
+		
+	}
+	
+	post {
+		success {
+			echo 'Build and Deploy Successful!'
+		}
+		failure {
+			echo 'Build Failed!'
+		}
+	}
+}
+	
+	
