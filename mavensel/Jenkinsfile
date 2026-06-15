@@ -23,14 +23,14 @@ pipeline {
 		stage('Test') {
 				steps {
 					dir('mavensel') {
-					sh 'mvn cleans test'
+					sh 'mvn clean test'
 				}
 			}
 		}
 		
 		stage('Run-applciation') {
 			steps {
-				dir('mabensel') {
+				dir('mavensel') {
 				sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
 			}
 		    }		
