@@ -29,7 +29,7 @@ pipeline {
         stage('Archive') {
         	steps {
         	dir('mavenweb22') {
-        		archiveArtifacts artifacts: 'target/*.war , fingerprint:true'S
+        		archiveArtifacts artifacts: 'target/*.war , fingerprint:true'
         	}
         	}
         }
