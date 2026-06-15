@@ -1,3 +1,18 @@
+# ---
+# - name: Deploy to Tomcat
+#   hosts: web
+#   become: yes
+#   tasks: 
+#     - name: Copy WAR file to Tomcat
+#       copy:
+#         src: "/var/snap/jenkins/5013/workspace/mavenweb11/target/mavenweb11.war"
+#         dest: "opt/tomcat/webapps/mavenweb11.war"
+#         remote_src: no
+        
+#     - name: Restart Tomcat
+#       shell: |
+#       	/opt/tomcat/bin/shutdown.sh ||true
+#       	/opt/tomcat/bin/startup.sh
 ---
 - name: Deploy to Tomcat
   hosts: web
@@ -6,13 +21,10 @@
     - name: Copy WAR file to Tomcat
       copy:
         src: "/var/snap/jenkins/5013/workspace/mavenweb11/target/mavenweb11.war"
-        dest: "opt/tomcat/webapps/mavenweb11.war"
+        dest: "/opt/tomcat/webapps/mavenweb11.war"
         remote_src: no
         
     - name: Restart Tomcat
       shell: |
-      	/opt/tomcat/bin/shutdown.sh ||true
-      	/opt/tomcat/bin/startup.sh
-      	
-    
-
+        /opt/tomcat/bin/shutdown.sh || true
+        /opt/tomcat/bin/startup.sh
